@@ -33,11 +33,6 @@
         			attributes:{
         			    url:"studentInfoManage.jsp"	
         			}
-        		},{
-        			text:"实名认证",
-        			attributes:{
-        			    url:"smrz.jsp"	
-        			}
         		}]
         	}];
         	

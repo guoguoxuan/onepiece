@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.icat.dao.GradeDao;
+import cn.icat.model.Grade;
 import cn.icat.model.PageBean;
 import cn.icat.util.DbUtil;
 import cn.icat.util.JsonUtil;
@@ -29,14 +30,22 @@ public class GradeListServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = request.getParameter("page");
 		String rows = request.getParameter("rows");
+		String gradeName = request.getParameter("gradeName");
+		
+		if (gradeName == null) {
+			gradeName = "";
+		}
+		
+		Grade grade = new Grade();
+		grade.setGradeName(gradeName);
 		
 		PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
 		Connection con = null;
 		try {
 			con = dbUtil.getCon();
 			JSONObject result = new JSONObject();
-		    JSONArray jasonArray = JsonUtil.formatRsToJsonArray(gradeDao.gradeList(con, pageBean));
-		    int total = gradeDao.gradeCount(con);
+		    JSONArray jasonArray = JsonUtil.formatRsToJsonArray(gradeDao.gradeList(con, pageBean, grade));
+		    int total = gradeDao.gradeCount(con, grade);
 		    result.put("rows", jasonArray);
 		    result.put("total", total);
 		    ResponseUtil.write(response, result);

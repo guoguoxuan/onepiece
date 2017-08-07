@@ -19,9 +19,10 @@
       <servlet-class>cn.icat.web.GradeListServlet</servlet-class>
   </servlet>
   <servlet>
-      <servlet-name>SmrzListServlet</servlet-name>
-      <servlet-class>cn.icat.web.SmrzListServlet</servlet-class>
+      <servlet-name>GradeDeleteServlet</servlet-name>
+      <servlet-class>cn.icat.web.GradeDeleteServlet</servlet-class>
   </servlet>
+
   
   <servlet-mapping>
      <servlet-name>LoginServlet</servlet-name>
@@ -31,8 +32,9 @@
      <servlet-name>gradeListServlet</servlet-name>
      <url-pattern>/gradeList</url-pattern>
   </servlet-mapping>
-    <servlet-mapping>
-     <servlet-name>SmrzListServlet</servlet-name>
-     <url-pattern>/smrzList</url-pattern>
+  <servlet-mapping>
+      <servlet-name>GradeDeleteServlet</servlet-name>
+      <url-pattern>/gradeDelete</url-pattern>
   </servlet-mapping>
+ 
 </web-app>
