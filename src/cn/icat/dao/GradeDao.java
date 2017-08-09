@@ -48,5 +48,23 @@ public class GradeDao {
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		return pstmt.executeUpdate();
 	}
+	
+	public int gradeAdd(Connection con, Grade grade) throws Exception {
+		String sql="insert into t_grade values(null,?,?)";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, grade.getGradeName());
+		pstmt.setString(2, grade.getGradeDesc());
+		return pstmt.executeUpdate();
+	}
+	
+	public int gradeModify(Connection con, Grade grade) throws Exception {
+		String sql = "update t_grade set gradeName=?,gradeDesc=? where id=?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, grade.getGradeName());
+		pstmt.setString(2, grade.getGradeDesc());
+		pstmt.setInt(3, grade.getId());
+		return pstmt.executeUpdate();
+		
+	}
 
 }

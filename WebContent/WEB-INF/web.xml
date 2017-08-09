@@ -22,6 +22,14 @@
       <servlet-name>GradeDeleteServlet</servlet-name>
       <servlet-class>cn.icat.web.GradeDeleteServlet</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>GradeSaveServlet</servlet-name>
+      <servlet-class>cn.icat.web.GradeSaveServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	  <servlet-name>StudentListServlet</servlet-name>
+  	  <servlet-class>cn.icat.web.StudentListServlet</servlet-class>
+  </servlet>
 
   
   <servlet-mapping>
@@ -35,6 +43,14 @@
   <servlet-mapping>
       <servlet-name>GradeDeleteServlet</servlet-name>
       <url-pattern>/gradeDelete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>GradeSaveServlet</servlet-name>
+      <url-pattern>/gradeSave</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>StudentListServlet</servlet-name>
+      <url-pattern>/studentList</url-pattern>
   </servlet-mapping>
  
 </web-app>

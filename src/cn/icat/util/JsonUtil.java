@@ -10,6 +10,7 @@ import net.sf.json.JSONObject;
 
 public class JsonUtil {
 	
+	jsonArray”–Œ Ã‚
 	public static JSONArray formatRsToJsonArray(ResultSet rs) throws Exception{
 		ResultSetMetaData md = rs.getMetaData();
 		int num = md.getColumnCount();

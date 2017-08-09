@@ -5,8 +5,19 @@ public class Grade {
 	private int id;
 	private String gradeName;
 	private String gradeDesc;
-	private int count;
 	
+	
+	
+	public Grade() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Grade(String gradeName, String gradeDesc) {
+		super();
+		this.gradeName = gradeName;
+		this.gradeDesc = gradeDesc;
+	}
 	public int getId() {
 		return id;
 	}
@@ -25,12 +36,7 @@ public class Grade {
 	public void setGradeDesc(String gradeDesc) {
 		this.gradeDesc = gradeDesc;
 	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
+
 	
 	
 
