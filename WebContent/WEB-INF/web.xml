@@ -30,6 +30,14 @@
   	  <servlet-name>StudentListServlet</servlet-name>
   	  <servlet-class>cn.icat.web.StudentListServlet</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>GradeComboListServlet</servlet-name>
+      <servlet-class>cn.icat.web.GradeComboListServlet</servlet-class>
+  </servlet>
+  <servlet>
+      <servlet-name>StudentDeleteServlet</servlet-name>
+      <servlet-class>cn.icat.web.StudentDeleteServlet</servlet-class>
+  </servlet>
 
   
   <servlet-mapping>
@@ -51,6 +59,14 @@
   <servlet-mapping>
       <servlet-name>StudentListServlet</servlet-name>
       <url-pattern>/studentList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>GradeComboListServlet</servlet-name>
+      <url-pattern>/gradeComboList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>StudentDeleteServlet</servlet-name>
+      <url-pattern>/studentDelete</url-pattern>
   </servlet-mapping>
  
 </web-app>

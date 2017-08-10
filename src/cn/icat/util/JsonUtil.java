@@ -1,16 +1,14 @@
 package cn.icat.util;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.util.Date;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class JsonUtil {
 	
-	jsonArray有问题
 	public static JSONArray formatRsToJsonArray(ResultSet rs) throws Exception{
 		ResultSetMetaData md = rs.getMetaData();
 		int num = md.getColumnCount();
@@ -18,7 +16,12 @@ public class JsonUtil {
 		while (rs.next()) {
 			JSONObject mapOfColValues = new JSONObject();
 			for (int i=1; i <= num; i++) {
-				mapOfColValues.put(md.getColumnName(i), rs.getObject(i));
+				Object o = rs.getObject(i);
+				if (o instanceof Date) { //instanceof判断是不是日期类型
+					mapOfColValues.put(md.getColumnName(i), DateUtil.formatDate((Date)o, "yyyy-MM-dd"));
+				} else {
+					mapOfColValues.put(md.getColumnName(i), rs.getObject(i));
+				}
 			}
 			array.add(mapOfColValues);
 		}

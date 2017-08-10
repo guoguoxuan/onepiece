@@ -4,22 +4,23 @@ import java.util.Date;
 
 public class Student {
 	
-	private int id;
+	private int stuId;
 	private String stuNo;
 	private String stuName;
 	private String sex;
 	private Date birthday;
-	private int gradeId;
+	private int gradeId=-1;
 	private String email;
 	private String stuDesc;
 	
 	private String gradeName;
 	
-	public int getId() {
-		return id;
+	
+	public int getStuId() {
+		return stuId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setStuId(int stuId) {
+		this.stuId = stuId;
 	}
 	public String getStuNo() {
 		return stuNo;

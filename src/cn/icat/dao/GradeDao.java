@@ -14,7 +14,7 @@ public class GradeDao {
 	public ResultSet gradeList(Connection con, PageBean pageBean, Grade grade) throws Exception{
 		StringBuffer sb = new StringBuffer("select * from t_grade");
 		
-		if (StringUtil.isNotEmpty(grade.getGradeName())) {
+		if (grade != null && StringUtil.isNotEmpty(grade.getGradeName())) {
 			sb.append(" and gradeName like '%"+grade.getGradeName()+"%'");
 		}
 		
