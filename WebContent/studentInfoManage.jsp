@@ -62,6 +62,17 @@
 		alert($("#s_ebirthday").datebox("getValue"));
 		alert($("#s_gradeId").combobox("getValue")); */
 	}
+	
+	function resetValue(){
+		//window.location.reload(); //刷新页面
+    	//document.getElementById("s_stuNo").value="";
+    	 $('#s_stuNo').val(''),
+    	$('#s_stuName').val(''),
+    	$('#s_sex').combobox('setValue',""),
+    	$('#s_bbirthday').datebox('setValue', ''),
+    	$('#s_ebirthday').datebox('clear')
+    	$('#s_gradeId').combobox('setValue',"") 
+    }
 </script>
 </head>
 <body style="margin: 5px">
@@ -91,23 +102,23 @@
 				class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
 		</div>
 		<div>
-			&nbsp;学号：&nbsp;<input type="text" name="s_stuNo" id="s_stuNo"
-				size="10" /> &nbsp;姓名：&nbsp;<input type="text" name="s_stuName"
-				id="s_stuName" size="10" /> &nbsp;性别：&nbsp;<select
-				class="easyui-combobox" id="s_sex" name="s_sex" editable="false"
-				panelHeight="auto">
+			&nbsp;学号：&nbsp;<input type="text" name="s_stuNo" id="s_stuNo" size="10" /> 
+			&nbsp;姓名：&nbsp;<input type="text" name="s_stuName" id="s_stuName" size="10" /> 
+			&nbsp;性别：&nbsp;<select class="easyui-combobox" id="s_sex" name="s_sex" size="10" editable="false" panelHeight="auto">
 				<!-- editable不可编写 ，panelHeight高度适应-->
-				<option value="">-请选择-</option>
+				<option value="">-请选择-</option> 
 				<option value="男">男</option>
 				<option value="女">女</option>
-			</select> &nbsp;出生日期:&nbsp;<input class="easyui-datebox" name="s_bbirthday"
+			</select> 
+			&nbsp;出生日期:&nbsp;<input class="easyui-datebox" name="s_bbirthday"
 				id="s_bbirthday" editable="false" size="10" />--><input
 				class="easyui-datebox" name="s_ebirthday" id="s_ebirthday"
-				editable="false" size="10" /> &nbsp;所属班级：&nbsp;<input
-				class="easyui-combobox" id="s_gradeId" name="s_gradeId" size="10"
-				data-options="panelHeight:'auto',editable:false,valueField:'id',textField:'gradeName',url:'gradeComboList'" />
+				editable="false" size="10" /> 
+			&nbsp;所属班级：&nbsp;<input class="easyui-combobox" id="s_gradeId" name="s_gradeId" size="10" data-options="panelHeight:'auto',editable:false,valueField:'id',textField:'gradeName',url:'gradeComboList'" />
 			<a href="javascript:serchStudent()" class="easyui-linkbutton"
 				iconCls="icon-search" plain="true">搜索</a>
+			<a href="javascript:resetValue()" class="easyui-linkbutton"
+				iconCls="icon-reload" plain="true">重置</a>
 		</div>
 	</div>
 </body>

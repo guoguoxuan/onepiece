@@ -121,7 +121,7 @@
             <a href="javascript:openGradeModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a>
             <a href="javascript:deleteGrade()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
         </div>
-        <div>&nbsp;班级名称：&nbsp;<input type="text" name="s_gradeName" id="s_gradeName"/><a href="javascript:searchGrade()" class="easyui-linkbutton" iconCls="icon-serch" plain="true">搜索</a></div>
+        <div>&nbsp;班级名称：&nbsp;<input type="text" name="s_gradeName" id="s_gradeName"/><a href="javascript:searchGrade()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a></div>
     </div>
     
     <div id="dlg" class="easyui-dialog" style="width: 400px; height:280px; padding: 10px 20px"
