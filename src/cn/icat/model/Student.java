@@ -15,7 +15,24 @@ public class Student {
 	
 	private String gradeName;
 	
+	public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
+	
+	public Student(String stuNo, String stuName, String sex, Date birthday, int gradeId, String email, String stuDesc) {
+		super();
+		this.stuNo = stuNo;
+		this.stuName = stuName;
+		this.sex = sex;
+		this.birthday = birthday;
+		this.gradeId = gradeId;
+		this.email = email;
+		this.stuDesc = stuDesc;
+	}
+
+
 	public int getStuId() {
 		return stuId;
 	}

@@ -43,7 +43,7 @@
         					$.messager.alert("系统提示","您已成功删除条<font color=red>"+result.delNums+"</font>数据!");
         					$("#dg").datagrid("reload");
         				} else {
-        					$.messager.alert("系统提示", result.errorMsg);
+        					$.messager.alert('系统提示', '<font color=red>'+selectedRows[result.errorIndex].gradeName+'</font>'+result.errorMsg);
         				}
         			},"json");
         		}

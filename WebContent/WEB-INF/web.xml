@@ -38,6 +38,10 @@
       <servlet-name>StudentDeleteServlet</servlet-name>
       <servlet-class>cn.icat.web.StudentDeleteServlet</servlet-class>
   </servlet>
+  <servlet>
+      <servlet-name>StudentSaveServlet</servlet-name>
+      <servlet-class>cn.icat.web.StudentSaveServlet</servlet-class>
+  </servlet>
 
   
   <servlet-mapping>
@@ -67,6 +71,10 @@
   <servlet-mapping>
       <servlet-name>StudentDeleteServlet</servlet-name>
       <url-pattern>/studentDelete</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	  <servlet-name>StudentSaveServlet</servlet-name>
+  	  <url-pattern>/studentSave</url-pattern>
   </servlet-mapping>
  
 </web-app>

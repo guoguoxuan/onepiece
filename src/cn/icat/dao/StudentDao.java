@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import org.apache.commons.httpclient.util.DateUtil;
+
 import cn.icat.model.PageBean;
 import cn.icat.model.Student;
 import cn.icat.util.StringUtil;
@@ -72,9 +74,50 @@ public class StudentDao {
 			return 0;
 		}
 	}
+	
 	public int studentDelete(Connection con, String delIds) throws Exception {
 		String sql="delete from t_student where stuId in ("+ delIds +")";
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		return pstmt.executeUpdate();
+	}
+	
+	public int studentAdd(Connection con, Student student)throws Exception {
+		String sql = "insert into t_student values(null,?,?,?,?,?,?,?)";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, student.getStuNo());
+		pstmt.setString(2, student.getStuName());
+		pstmt.setString(3, student.getSex());
+		pstmt.setString(4, DateUtil.formatDate(student.getBirthday(), "yyyy-MM-dd"));
+		pstmt.setInt(5, student.getGradeId());
+		pstmt.setString(6, student.getEmail());
+		pstmt.setString(7, student.getStuDesc());
+		return pstmt.executeUpdate();
+	}
+	
+	public int studentModify(Connection con, Student student)throws Exception {
+		String sql = "update t_student set stuNo=?,stuName=?,sex=?,birthday=?,gradeId=?,email=?,stuDesc=? where stuId=?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, student.getStuNo());
+		pstmt.setString(2, student.getStuName());
+		pstmt.setString(3, student.getSex());
+		pstmt.setString(4, DateUtil.formatDate(student.getBirthday(), "yyyy-MM-dd"));
+		pstmt.setInt(5, student.getGradeId());
+		pstmt.setString(6, student.getEmail());
+		pstmt.setString(7, student.getStuDesc());
+		pstmt.setInt(8, student.getStuId());
+		return pstmt.executeUpdate();
+	}
+	
+	//删除班级判断是否存在学生
+	public boolean getStudentByGradeId(Connection con, String gradeId) throws Exception{
+		String sql = "select * from t_student where gradeId=?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, gradeId);
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

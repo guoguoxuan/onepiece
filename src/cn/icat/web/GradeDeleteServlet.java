@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.icat.dao.GradeDao;
+import cn.icat.dao.StudentDao;
 import cn.icat.util.DbUtil;
 import cn.icat.util.ResponseUtil;
 import net.sf.json.JSONObject;
@@ -16,6 +17,7 @@ import net.sf.json.JSONObject;
 public class GradeDeleteServlet extends HttpServlet {
 	DbUtil dbUtil = new DbUtil();
 	GradeDao gradeDao = new GradeDao();
+	StudentDao studentDao = new StudentDao();
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,6 +34,20 @@ public class GradeDeleteServlet extends HttpServlet {
 		try {
 			con = dbUtil.getCon();
 			JSONObject result = new JSONObject();
+			
+			////删除班级判断是否存在学生
+			String str[] = delIds.split(",");
+			for (int i=0; i<str.length; i++) {
+				boolean f = studentDao.getStudentByGradeId(con, str[i]);
+				if (f) {
+					result.put("errorIndex", i);
+					result.put("errorMsg", "班级下面有学生，不能删除！");
+					ResponseUtil.write(response, result);
+					return;
+				}
+			}
+			
+			
 			int delNums = gradeDao.gradeDelete(con, delIds);
 			
 			if (delNums > 0) {
