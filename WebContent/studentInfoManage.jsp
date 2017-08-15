@@ -135,9 +135,16 @@
 		$("#fm").form("load", row);
 		url="studentSave?stuId="+row.stuId;
 	}
+	
+	function rf(){
+		//window.location.reload();
+		resetValue2();
+		serchStudent()		
+		}
 </script>
 </head>
 <body style="margin: 5px">
+
 	<table id="dg" title="学生信息" class="easyui-datagrid" fitColumns="true"
 		pagination="true" rownumbers="true" url="studentList" fit="true"
 		toolbar="#tb">
@@ -162,6 +169,7 @@
 			<a href="javascript:openStudentAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
 			<a href="javascript:openStudentModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit" plain="true">修改</a> 
 			<a href="javascript:deleteStudent()" class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+			<a href="javascript:rf()" class="easyui-linkbutton" iconCls="icon-reload" plain="true">刷新</a>
 		</div>
 		<div>
 			&nbsp;学号：&nbsp;<input type="text" name="s_stuNo" id="s_stuNo" size="10" /> 

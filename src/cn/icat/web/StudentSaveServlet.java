@@ -9,18 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import cn.icat.dao.StudentDao;
-import cn.icat.model.PageBean;
 import cn.icat.model.Student;
+import cn.icat.util.DateUtil;
 import cn.icat.util.DbUtil;
-import cn.icat.util.JsonUtil;
 import cn.icat.util.ResponseUtil;
 import cn.icat.util.StringUtil;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 
 
-public class StudentListServlet extends HttpServlet{
+public class StudentSaveServlet extends HttpServlet{
 	DbUtil dbUtil=new DbUtil();
 	StudentDao studentDao=new StudentDao();
 	
@@ -33,35 +31,43 @@ public class StudentListServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
 		String stuNo=request.getParameter("stuNo");
 		String stuName=request.getParameter("stuName");
 		String sex=request.getParameter("sex");
-		String bbirthday=request.getParameter("bbirthday");
-		String ebirthday=request.getParameter("ebirthday");
+		String birthday=request.getParameter("birthday");
 		String gradeId=request.getParameter("gradeId");
+		String email=request.getParameter("email");
+		String stuDesc=request.getParameter("stuDesc");
+		String stuId=request.getParameter("stuId");
 		
-		Student student=new Student();
-		if(stuNo!=null){
-			student.setStuNo(stuNo);
-			student.setStuName(stuName);
-			student.setSex(sex);
-			if(StringUtil.isNotEmpty(gradeId)){
-				student.setGradeId(Integer.parseInt(gradeId));
-			}
+		Student student=null;
+		try {
+			student = new Student(stuNo, stuName, sex, DateUtil.formatString(birthday, "yyyy-MM-dd"),
+					Integer.parseInt(gradeId), email, stuDesc);
+		}  catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		
-		String page=request.getParameter("page");
-		String rows=request.getParameter("rows");
-	
-		PageBean pageBean=new PageBean(Integer.parseInt(page),Integer.parseInt(rows));
+		if(StringUtil.isNotEmpty(stuId)){
+			student.setStuId(Integer.parseInt(stuId));
+		}
 		Connection con=null;
 		try{
 			con=dbUtil.getCon();
+			int saveNums=0;
 			JSONObject result=new JSONObject();
-			JSONArray jsonArray=JsonUtil.formatRsToJsonArray(studentDao.studentList(con, pageBean,student,bbirthday,ebirthday));
-			int total=studentDao.studentCount(con,student,bbirthday,ebirthday);
-			result.put("rows", jsonArray);
-			result.put("total", total);
+			if(StringUtil.isNotEmpty(stuId)){
+				saveNums=studentDao.studentModify(con, student);
+			}else{
+				saveNums=studentDao.studentAdd(con, student);
+			}
+			if(saveNums>0){
+				result.put("success", "true");
+			}else{
+				result.put("success", "true");
+				result.put("errorMsg", "±£¥Ê ß∞‹");
+			}
 			ResponseUtil.write(response, result);
 		}catch(Exception e){
 			e.printStackTrace();
